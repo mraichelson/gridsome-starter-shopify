@@ -47,6 +47,33 @@
       </div>
 
       <div class="navbar-end">
+        <div
+          class="navbar-item has-dropdown"
+          :class="{'is-active': searchResults.length}">
+          <div class="control">
+            <label for="search">
+              <input
+                id="search"
+                v-model="searchTerm"
+                class="input is-small"
+                type="text"
+                placeholder="Search">
+            </label>
+          </div>
+          <div class="navbar-dropdown">
+            <g-link
+              v-for="result in searchResults"
+              :key="result.id"
+              :to="result.path"
+              class="navbar-item">
+              {{ result.title }}
+            </g-link>
+            <hr class="navbar-divider">
+            <div class="navbar-item">
+              View more results
+            </div>
+          </div>
+        </div>
         <g-link
           v-if="isAuthenticated"
           to="/account"
@@ -71,9 +98,16 @@
 
 <script>
 export default {
+  data: () => ({
+    searchTerm: ''
+  }),
   computed: {
     cart () { return this.$store.state.cart },
-    isAuthenticated () { return this.$store.state.isAuthenticated }
+    searchResults () {
+      const searchTerm = this.searchTerm
+      if (searchTerm.length < 3) return []
+      return this.$search.search({ query: searchTerm, limit: 5, suggest: true })
+    }
   }
 }
 </script>
