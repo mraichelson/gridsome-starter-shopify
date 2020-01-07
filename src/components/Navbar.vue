@@ -104,9 +104,15 @@ export default {
   computed: {
     cart () { return this.$store.state.cart },
     searchResults () {
+      if (!this.$search) return []
       const searchTerm = this.searchTerm
       if (searchTerm.length < 3) return []
       return this.$search.search({ query: searchTerm, limit: 5, suggest: true })
+    }
+  },
+  watch: {
+    $route (to, from) {
+      this.searchTerm = ''
     }
   }
 }

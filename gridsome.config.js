@@ -40,7 +40,7 @@ module.exports = {
             fields: ['title', 'handle', 'description']
           }
         ],
-        searchFields: ['title', 'handle']
+        searchFields: ['title', 'handle', 'tags']
       }
     }
   ]
