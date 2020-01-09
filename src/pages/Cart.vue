@@ -116,7 +116,7 @@ export default {
   data: () => ({ email: '', isLoading: false }),
   computed: {
     cart () { return this.$store.state.cart },
-    cartTotal () { return this.$store.getters.cartTotal }
+    cartTotal () { return this.$store.getters.cartTotal.format() }
   },
   methods: {
     totalPrice ({ qty, price }) {
