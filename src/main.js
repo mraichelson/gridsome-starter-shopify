@@ -5,12 +5,9 @@
 import DefaultLayout from '~/layouts/Default.vue'
 
 // Plugins
-import Cookies from 'js-cookie'
-import currency from 'currency.js'
 import Notifications from 'vue-notification/dist/ssr.js'
 import VueApollo from 'vue-apollo'
-import Vuex from 'vuex'
-import VuexPersistence from 'vuex-persist'
+import createStore from './store'
 
 // Dependencies
 import ApolloClient from 'apollo-boost'
@@ -25,7 +22,6 @@ export default function (Vue, { appOptions, isClient, router }) {
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
   // Import global plugins
-  Vue.use(Vuex)
   Vue.use(VueApollo)
   Vue.use(Notifications)
 
@@ -46,73 +42,10 @@ export default function (Vue, { appOptions, isClient, router }) {
   // Add provider to vue app
   appOptions.apolloProvider = apolloProvider
 
-  // Create Vuex store
-  const store = new Vuex.Store({
-    state: {
-      cart: [],
-      token: {}
-    },
-    mutations: {
-      updateCart: (state, cart) => { state.cart = cart },
-      setToken: (state, token) => { state.token = token }
-    },
-    actions: {
-      addToCart: ({ state, commit }, newItem) => {
-        const cart = state.cart
-        const itemExists = cart.find(item => item.variantId === newItem.variantId)
-
-        if (itemExists) itemExists.qty += newItem.qty
-        else cart.push(newItem)
-
-        commit('updateCart', cart)
-      },
-      removeFromCart: ({ state, commit }, itemId) => {
-        const cart = state.cart
-        const updatedCart = cart.filter(item => item.variantId !== itemId)
-
-        commit('updateCart', updatedCart)
-      },
-      login: ({ commit }, token) => {
-        commit('setToken', token)
-      },
-      logout: ({ commit }) => {
-        commit('setToken', {})
-        commit('updateCart', [])
-      }
-    },
-    getters: {
-      isAuthenticated: ({ token }) => !!token.accessToken,
-      accessToken: ({ token }) => token.accessToken,
-      cartTotal: ({ cart }) => cart.reduce((total, item) => total.add(currency(item.price.amount).multiply(item.qty)), currency(0, { formatWithSymbol: true, symbol: '£' }))
-    }
-  })
-
+  const store = createStore(Vue, { isClient })
   appOptions.store = store
 
-  if (isClient) {
-    // Tokens
-    new VuexPersistence({
-      restoreState: key => Cookies.getJSON(key),
-      saveState: (key, { token }) => {
-        if (token) {
-          const expires = new Date(token.expiresAt)
-          Cookies.set(key, { token }, { expires })
-        } else {
-          Cookies.set(key, { token })
-        }
-      },
-      modules: ['token'],
-      filter: mutation => mutation.type === 'setToken'
-    }).plugin(store)
-
-    // Cart
-    new VuexPersistence({
-      storage: window.localStorage,
-      modules: ['cart'],
-      filter: mutation => mutation.type === 'updateCart'
-    }).plugin(store)
-  }
-
+  // Authentication & Route handling
   if (isClient) {
     router.beforeEach((to, from, next) => {
       const tokenExists = store.getters.isAuthenticated
