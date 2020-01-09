@@ -116,17 +116,14 @@ export default {
   data: () => ({ email: '', isLoading: false }),
   computed: {
     cart () { return this.$store.state.cart },
-    cartTotal () {
-      const total = this.cart.reduce((total, item) => total.add(currency(item.price.amount).multiply(item.qty)), currency(0, { formatWithSymbol: true, symbol: '£' }))
-      return total.format()
-    }
+    cartTotal () { return this.$store.getters.cartTotal }
   },
   methods: {
     totalPrice ({ qty, price }) {
       return currency(price.amount, { formatWithSymbol: true, symbol: '£' }).multiply(qty).format()
     },
     async removeItem (itemId) {
-      await this.$store.commit('removeFromCart', itemId)
+      await this.$store.dispatch('removeFromCart', itemId)
       this.$notify({
         title: 'Item removed from cart',
         type: 'primary'

@@ -134,7 +134,7 @@ export default {
         price: variant.price,
         image: variant.image
       }
-      await this.$store.commit('addToCart', payload)
+      await this.$store.dispatch('addToCart', payload)
       this.$notify({
         title: `Added ${payload.productTitle} to Cart`,
         type: 'primary'

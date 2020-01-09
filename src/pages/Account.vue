@@ -83,7 +83,7 @@ export default {
         }
       }`,
       variables () {
-        const accessToken = sessionStorage.getItem('store-token')
+        const accessToken = this.$store.getters.accessToken
         return { accessToken }
       }
     }

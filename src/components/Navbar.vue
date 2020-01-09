@@ -102,6 +102,7 @@ export default {
     searchTerm: ''
   }),
   computed: {
+    isAuthenticated () { return this.$store.getters.isAuthenticated },
     cart () { return this.$store.state.cart },
     searchResults () {
       if (!this.$search) return []

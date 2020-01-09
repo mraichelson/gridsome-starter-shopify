@@ -92,20 +92,16 @@ export default {
         const { customerAccessToken, customerUserErrors } = customerAccessTokenCreate
         if (customerUserErrors.length) {
           const [firstError] = customerUserErrors
-          return this.$notify({
-            title: firstError.message,
-            type: 'danger'
-          })
+          throw new Error(firstError.message)
         }
-        sessionStorage.setItem('store-token', customerAccessToken.accessToken)
-        await this.$store.commit('setIsAuthenticated', true)
-        this.$router.push('account')
+        await this.$store.dispatch('setToken', customerAccessToken)
+        this.$router.push('/account')
       } catch (error) {
         this.isLoading = false
         console.error(error)
         this.$notify({
-          title: 'Something went wrong. Please try again.',
-          type: 'danger'
+          title: error.message,
+          type: 'error'
         })
       }
     }
