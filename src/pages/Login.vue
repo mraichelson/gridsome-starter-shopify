@@ -94,7 +94,7 @@ export default {
           const [firstError] = customerUserErrors
           throw new Error(firstError.message)
         }
-        await this.$store.dispatch('setToken', customerAccessToken)
+        await this.$store.dispatch('login', customerAccessToken)
         this.$router.push('/account')
       } catch (error) {
         this.isLoading = false

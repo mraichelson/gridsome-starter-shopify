@@ -50,7 +50,7 @@ export default function (Vue, { appOptions, isClient, router }) {
   const store = new Vuex.Store({
     state: {
       cart: [],
-      token: null
+      token: {}
     },
     mutations: {
       updateCart: (state, cart) => { state.cart = cart },
@@ -72,12 +72,16 @@ export default function (Vue, { appOptions, isClient, router }) {
 
         commit('updateCart', updatedCart)
       },
-      setToken: ({ commit }, token) => {
+      login: ({ commit }, token) => {
         commit('setToken', token)
+      },
+      logout: ({ commit }) => {
+        commit('setToken', {})
+        commit('updateCart', [])
       }
     },
     getters: {
-      isAuthenticated: ({ token }) => !!token,
+      isAuthenticated: ({ token }) => !!token.accessToken,
       accessToken: ({ token }) => token.accessToken,
       cartTotal: ({ cart }) => cart.reduce((total, item) => total.add(currency(item.price.amount).multiply(item.qty)), currency(0, { formatWithSymbol: true, symbol: '£' }))
     }
@@ -90,8 +94,12 @@ export default function (Vue, { appOptions, isClient, router }) {
     new VuexPersistence({
       restoreState: key => Cookies.getJSON(key),
       saveState: (key, { token }) => {
-        const expires = new Date(token.expiresAt)
-        Cookies.set(key, { token }, { expires })
+        if (token) {
+          const expires = new Date(token.expiresAt)
+          Cookies.set(key, { token }, { expires })
+        } else {
+          Cookies.set(key, { token })
+        }
       },
       modules: ['token'],
       filter: mutation => mutation.type === 'setToken'

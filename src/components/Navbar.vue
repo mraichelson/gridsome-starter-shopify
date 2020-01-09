@@ -50,7 +50,7 @@
         <div
           class="navbar-item has-dropdown"
           :class="{'is-active': searchResults.length}">
-          <div class="control">
+          <div class="control navbar-item">
             <label for="search">
               <input
                 id="search"
@@ -74,14 +74,29 @@
             </div>
           </div>
         </div>
-        <g-link
+        <div
           v-if="isAuthenticated"
-          to="/account"
-          class="navbar-item">
-          Account
-        </g-link>
+          class="navbar-item has-dropdown is-hoverable">
+          <p class="navbar-item">
+            Account
+          </p>
+          <div class="navbar-dropdown">
+            <g-link
+              to="/account"
+              class="navbar-item">
+              Dashboard
+            </g-link>
+            <hr class="navbar-divider">
+            <button
+              class="button is-white"
+              @click="logout"
+              @keyup.enter="logout">
+              Logout
+            </button>
+          </div>
+        </div>
         <g-link
-          v-else
+          v-if="!isAuthenticated"
           to="/login"
           class="navbar-item">
           Login
@@ -114,6 +129,12 @@ export default {
   watch: {
     $route (to, from) {
       this.searchTerm = ''
+    }
+  },
+  methods: {
+    async logout () {
+      await this.$store.dispatch('logout')
+      this.$router.push('/')
     }
   }
 }
