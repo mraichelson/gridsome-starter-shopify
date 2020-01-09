@@ -82,6 +82,10 @@ export default {
           }
         }
       }`,
+      skip () {
+        // Skip query if we have no token - i.e at build time
+        return !this.$store.getters.isAuthenticated
+      },
       variables () {
         const accessToken = this.$store.getters.accessToken
         return { accessToken }
