@@ -80,11 +80,11 @@
           <p class="navbar-item">
             Account
           </p>
-          <div class="navbar-dropdown">
+          <div class="navbar-dropdown has-text-centered">
             <g-link
               to="/account"
               class="navbar-item">
-              Dashboard
+              Your Orders
             </g-link>
             <hr class="navbar-divider">
             <button
