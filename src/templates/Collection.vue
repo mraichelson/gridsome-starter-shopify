@@ -32,8 +32,8 @@
               </div>
 
               <div
-                v-html="product.descriptionHtml"
-                class="content" />
+                class="content"
+                v-html="product.descriptionHtml" />
               <div class="field is-grouped is-grouped-right">
                 <div class="control">
                   <g-link
