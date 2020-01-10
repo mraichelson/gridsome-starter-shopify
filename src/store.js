@@ -45,7 +45,7 @@ export default function createStore (Vue, { isClient }) {
     getters: {
       isAuthenticated: ({ token }) => !!token.accessToken,
       accessToken: ({ token }) => token.accessToken,
-      cartTotal: ({ cart }) => cart.reduce((total, item) => total.add(currency(item.price.amount).multiply(item.qty)), currency(0, { formatWithSymbol: true, symbol: '£' }))
+      cartTotal: ({ cart }) => cart.reduce((total, item) => total.add(currency(item.price).multiply(item.qty)), currency(0, { formatWithSymbol: true, symbol: '£' }))
     }
   })
 

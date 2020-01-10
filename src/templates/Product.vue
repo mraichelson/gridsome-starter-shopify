@@ -131,7 +131,7 @@ export default {
         productTitle: this.product.title,
         variantTitle: variant.title,
         variantId: variant.id,
-        price: variant.price,
+        price: variant.price.amount,
         image: variant.image
       }
       await this.$store.dispatch('addToCart', payload)
