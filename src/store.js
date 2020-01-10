@@ -26,7 +26,12 @@ export default function createStore (Vue, { isClient }) {
         if (itemExists) itemExists.qty += newItem.qty
         else cart.push(newItem)
 
-        commit('updateCart', cart)
+        const updatedCart = cart.map(item => {
+          const total = currency(item.price, { formatWithSymbol: true, symbol: '£' }).multiply(item.qty).format()
+          return { ...item, total }
+        })
+
+        commit('updateCart', updatedCart)
       },
       removeFromCart: ({ state, commit }, itemId) => {
         const cart = state.cart
