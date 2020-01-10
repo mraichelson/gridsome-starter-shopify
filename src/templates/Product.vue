@@ -127,7 +127,7 @@ export default {
     async addToCart () {
       const variant = this.currentVariant
       const payload = {
-        handle: this.product.path,
+        path: this.product.path,
         qty: this.quantity,
         productTitle: this.product.title,
         variantTitle: variant.title,
