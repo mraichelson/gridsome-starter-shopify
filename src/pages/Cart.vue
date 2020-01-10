@@ -9,7 +9,7 @@
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class="container cart">
       <table class="table is-fullwidth">
         <tbody>
           <tr
@@ -51,9 +51,12 @@
                   </button>
                 </div>
                 <div class="control">
-                  <a class="button is-light">
+                  <button
+                    class="button is-light"
+                    @click="decreaseItemQty(item)"
+                    @keyup="decreaseItemQty(item)">
                     -
-                  </a>
+                  </button>
                 </div>
                 <div class="control">
                   <label for="qty">
@@ -61,13 +64,18 @@
                       :value="item.qty"
                       class="input has-text-centered"
                       type="number"
-                      placeholder="Enter a quantity">
+                      placeholder="Enter a quantity"
+                      min="1"
+                      @change="e => updateItemQty(item, e.target.valueAsNumber)">
                   </label>
                 </div>
                 <div class="control">
-                  <a class="button is-light">
+                  <button
+                    class="button is-light"
+                    @click="increaseItemQty(item)"
+                    @keyup="increaseItemQty(item)">
                     +
-                  </a>
+                  </button>
                 </div>
               </div>
             </td>
@@ -136,6 +144,7 @@
 </template>
 
 <script>
+// Packages
 import gql from 'graphql-tag'
 export default {
   metaInfo: {
@@ -153,6 +162,19 @@ export default {
         title: 'Item removed from cart',
         type: 'primary'
       })
+    },
+    async decreaseItemQty (item) {
+      if (item.qty === 1) return
+      const qty = item.qty - 1
+      await this.$store.dispatch('updateItemQty', { itemId: item.variantId, qty })
+    },
+    async increaseItemQty (item) {
+      const qty = item.qty + 1
+      await this.$store.dispatch('updateItemQty', { itemId: item.variantId, qty })
+    },
+    async updateItemQty (item, qty) {
+      if (qty <= 0) return
+      await this.$store.dispatch('updateItemQty', { itemId: item.variantId, qty })
     },
     async checkout () {
       const email = this.email

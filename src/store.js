@@ -33,6 +33,15 @@ export default function createStore (Vue, { isClient }) {
 
         commit('updateCart', updatedCart)
       },
+      updateItemQty: ({ state, commit }, { itemId, qty }) => {
+        const cart = state.cart
+        const item = cart.find(item => item.variantId === itemId)
+
+        item.qty = qty
+        item.total = currency(item.price, { formatWithSymbol: true, symbol: '£' }).multiply(qty).format()
+
+        commit('updateCart', cart)
+      },
       removeFromCart: ({ state, commit }, itemId) => {
         const cart = state.cart
         const updatedCart = cart.filter(item => item.variantId !== itemId)

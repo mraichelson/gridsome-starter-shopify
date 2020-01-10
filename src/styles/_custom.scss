@@ -13,18 +13,20 @@
 }
 
 // Cart
-.input {
-	height: 50px !important;
-}
-.field.has-addons {
-	.button {
-		padding: 0 25px !important;
-		border: 1px solid $grey-lighter;
-		&.is-white {
-      border: none;
+.cart {
+	.input {
+		height: 50px !important;
+	}
+	.field.has-addons {
+		.button {
+			padding: 0 25px !important;
+			border: 1px solid $grey-lighter;
+			&.is-white {
+				border: none;
+			}
 		}
 	}
-}
-.item-total {
-  padding-top: 14px;
+	.item-total {
+		padding-top: 14px;
+	}
 }
