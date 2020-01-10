@@ -36,7 +36,7 @@
               <div class="field is-grouped is-grouped-centered">
                 <div class="control">
                   <g-link
-                    :to="`collection/${collection.handle}`"
+                    :to="collection.path"
                     class="button is-white-ter">
                     Browse
                   </g-link>
@@ -64,7 +64,7 @@ query ShopifyProducts {
     edges {
       node {
         id
-        handle
+        path
         title
         descriptionHtml
         image {

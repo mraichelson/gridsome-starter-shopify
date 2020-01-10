@@ -37,7 +37,7 @@
               <div class="field is-grouped is-grouped-right">
                 <div class="control">
                   <g-link
-                    :to="`product/${product.handle}`"
+                    :to="product.path"
                     class="button is-primary is-outlined">
                     View Product
                   </g-link>
@@ -68,7 +68,7 @@ query Collection ($id: ID!) {
     products {
       id
       title
-      handle
+      path
       descriptionHtml
       priceRange {
         minVariantPrice {

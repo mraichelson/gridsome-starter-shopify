@@ -127,7 +127,7 @@ export default {
     async addToCart () {
       const variant = this.currentVariant
       const payload = {
-        handle: this.product.handle,
+        handle: this.product.path,
         qty: this.quantity,
         productTitle: this.product.title,
         variantTitle: variant.title,
@@ -149,6 +149,7 @@ export default {
 query Product ($id: ID!) {
   shopifyProduct (id: $id) {
     id
+    path
     descriptionHtml
     title
     tags

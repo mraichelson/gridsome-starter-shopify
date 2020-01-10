@@ -11,10 +11,10 @@
                 Our Core Collection
               </h1>
               <div
-                v-html="collection.descriptionHtml"
-                class="content" />
+                class="content"
+                v-html="collection.descriptionHtml" />
               <g-link
-                :to="`collection/${collection.handle}`"
+                :to="collection.path"
                 class="button">
                 Shop Now
               </g-link>
@@ -65,12 +65,12 @@
               </div>
 
               <div
-                v-html="product.descriptionHtml"
-                class="content" />
+                class="content"
+                v-html="product.descriptionHtml" />
               <div class="field is-grouped is-grouped-right">
                 <div class="control">
                   <g-link
-                    :to="`product/${product.handle}`"
+                    :to="product.path"
                     class="button is-primary is-outlined">
                     View Product
                   </g-link>
@@ -102,7 +102,7 @@ query ShopifyProducts {
     edges {
       node {
         id
-        handle
+        path
         title
         descriptionHtml
         image {
@@ -117,7 +117,7 @@ query ShopifyProducts {
       node {
         id
         title
-        handle
+        path
         descriptionHtml
         priceRange {
           minVariantPrice {
