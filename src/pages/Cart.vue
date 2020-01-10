@@ -11,20 +11,11 @@
     </div>
     <div class="container">
       <table class="table is-fullwidth">
-        <thead>
-          <tr>
-            <th />
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Total</th>
-            <th />
-          </tr>
-        </thead>
         <tbody>
           <tr
             v-for="item in cart"
             :key="item.variantId">
-            <td>
+            <td width="150">
               <figure class="image is-square">
                 <img
                   :src="item.image.thumbnail"
@@ -32,20 +23,58 @@
               </figure>
             </td>
             <td>
-              {{ item.productTitle }}
-              {{ item.variantTitle !== 'Default Title' ? `- ${item.variantTitle}` : '' }}
+              <g-link
+                :to="item.path"
+                class="is-uppercase has-text-weight-medium">
+                {{ item.productTitle }}
+              </g-link>
+              <p>
+                <small>
+                  {{ item.variantTitle !== 'Default Title' ? item.variantTitle : '' }}
+                </small>
+              </p>
+              <p>
+                <small>
+                  {{ item.price }}
+                </small>
+              </p>
             </td>
-            <td>{{ item.qty }}</td>
-            <td>{{ totalPrice(item) }}</td>
-            <td
-              width="200"
-              class="has-text-right">
-              <button
-                class="delete is-danger"
-                @click="removeItem(item.variantId)"
-                @keyup="removeItem(item.variantId)">
-                <small>Remove</small>
-              </button>
+            <td />
+            <td width="300">
+              <div class="field has-addons">
+                <div class="control">
+                  <button
+                    class="button is-white"
+                    @click="removeItem(item.variantId)"
+                    @keyup="removeItem(item.variantId)">
+                    <small>Remove</small>
+                  </button>
+                </div>
+                <div class="control">
+                  <a class="button is-light">
+                    -
+                  </a>
+                </div>
+                <div class="control">
+                  <label for="qty">
+                    <input
+                      :value="item.qty"
+                      class="input has-text-centered"
+                      type="number"
+                      placeholder="Enter a quantity">
+                  </label>
+                </div>
+                <div class="control">
+                  <a class="button is-light">
+                    +
+                  </a>
+                </div>
+              </div>
+            </td>
+            <td width="150">
+              <p class="has-text-right item-total">
+                {{ item.total }}
+              </p>
             </td>
           </tr>
         </tbody>
@@ -107,7 +136,6 @@
 </template>
 
 <script>
-import currency from 'currency.js'
 import gql from 'graphql-tag'
 export default {
   metaInfo: {
@@ -119,9 +147,6 @@ export default {
     cartTotal () { return this.$store.getters.cartTotal.format() }
   },
   methods: {
-    totalPrice ({ qty, price }) {
-      return currency(price.amount, { formatWithSymbol: true, symbol: '£' }).multiply(qty).format()
-    },
     async removeItem (itemId) {
       await this.$store.dispatch('removeFromCart', itemId)
       this.$notify({
@@ -173,7 +198,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.input {
-  height: 50px !important;
+tr {
+  height: 150px;
+  // display: flex;
 }
 </style>
