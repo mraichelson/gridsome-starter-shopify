@@ -41,20 +41,19 @@ export default {
   },
   data: () => ({ email: '' }),
   async mounted () {
-    const shouldSkip = !this.$store.getters.isAuthenticated
-    const accessToken = this.$store.getters.accessToken
-    const { data } = await this.$apollo.query({
-      query: gql`query CustomerDetails ($accessToken: String!) {
-        customer (customerAccessToken: $accessToken) {
-          id
-          email
-        }
-      }`,
-      skip: shouldSkip,
-      variables: { accessToken }
-    })
-    if (data && data.customer) {
-      this.email = data.customer.email
+    if (this.$store.getters.isAuthenticated) {
+      const { data } = await this.$apollo.query({
+        query: gql`query CustomerDetails ($accessToken: String!) {
+          customer (customerAccessToken: $accessToken) {
+            id
+            email
+          }
+        }`,
+        variables: { accessToken: this.$store.getters.accessToken }
+      })
+      if (data && data.customer) {
+        this.email = data.customer.email
+      }
     }
   },
   methods: {
