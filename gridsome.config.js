@@ -58,11 +58,11 @@ module.exports = {
       options: {
         exclude: ['/account'],
         config: {
-          '/collection/*': {
-            changefreq: 'weekly',
+          '/product/*': {
+            changefreq: 'daily',
             priority: 0.5
           },
-          '/product/*': {
+          '/collection/*': {
             changefreq: 'weekly',
             priority: 0.5
           },
