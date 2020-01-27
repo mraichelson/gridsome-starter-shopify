@@ -4,9 +4,10 @@
       <div class="columns">
         <div class="column is-three-fifths">
           <figure class="image">
-            <img
+            <v-lazy-image
               :src="product.images[0].src"
-              :alt="product.images[0].altText || product.title">
+              :src-placeholder="product.images[0].placeholder"
+              :alt="product.images[0].altText || product.title" />
           </figure>
           <br>
           <div class="columns">
@@ -15,9 +16,9 @@
               :key="image.id"
               class="column is-3">
               <figure class="image is-square">
-                <img
+                <v-lazy-image
                   :src="image.thumbnail"
-                  :alt="image.altText || product.title">
+                  :alt="image.altText || product.title" />
               </figure>
             </div>
           </div>
@@ -157,6 +158,7 @@ query Product ($id: ID!) {
       id
       altText
       src: transformedSrc(maxWidth: 600, maxHeight: 400, crop: CENTER)
+      placeholder: transformedSrc(maxWidth: 150, maxHeight: 100, crop: CENTER)
       thumbnail: transformedSrc(maxWidth: 150, maxHeight: 150, crop: CENTER)
     }
     options {

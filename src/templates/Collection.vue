@@ -14,9 +14,10 @@
           <div class="card">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img
+                <v-lazy-image
                   :src="product.images[0].src"
-                  :alt="product.images[0].altText || product.title">
+                  :src-placeholder="product.images[0].placeholder"
+                  :alt="product.images[0].altText || product.title" />
               </figure>
             </div>
             <div class="card-content has-text-left">
@@ -79,6 +80,7 @@ query Collection ($id: ID!) {
         id
         altText
         src: transformedSrc (maxWidth: 400, maxHeight: 300, crop: CENTER)
+        placeholder: transformedSrc(maxWidth: 100, maxHeight: 75, crop: CENTER)
       }
     }
   }

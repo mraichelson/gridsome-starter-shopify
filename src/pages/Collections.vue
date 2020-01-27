@@ -19,9 +19,10 @@
           <div class="card">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img
+                <v-lazy-image
                   :src="collection.image.src"
-                  :alt="collection.image.altText || collection.title">
+                  :src-placeholder="collection.image.placeholder"
+                  :alt="collection.image.altText || collection.title" />
               </figure>
             </div>
             <div class="card-content">
@@ -70,6 +71,7 @@ query ShopifyProducts {
         image {
           altText
           src: transformedSrc(maxWidth: 400, maxHeight: 300, crop: CENTER)
+          placeholder: transformedSrc(maxWidth: 100, maxHeight: 75, crop: CENTER)
         }
       }
     }

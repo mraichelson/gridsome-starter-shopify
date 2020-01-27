@@ -22,9 +22,10 @@
           </div>
           <div class="column is-three-fifths">
             <figure class="image">
-              <img
+              <v-lazy-image
                 :src="collection.image.src"
-                :alt="collection.image.altText || collection.title">
+                :src-placeholder="collection.image.placeholder"
+                :alt="collection.image.altText || collection.title" />
             </figure>
           </div>
         </div>
@@ -47,9 +48,10 @@
           <div class="card">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img
+                <v-lazy-image
                   :src="product.images[0].src"
-                  :alt="product.images[0].altText || product.title">
+                  :src-placeholder="product.images[0].placeholder"
+                  :alt="product.images[0].altText || product.title" />
               </figure>
             </div>
             <div class="card-content has-text-left">
@@ -108,6 +110,7 @@ query ShopifyProducts {
         image {
           altText
           src: transformedSrc(maxWidth: 800, maxHeight: 800, crop: CENTER)
+          placeholder: transformedSrc(maxWidth: 200, maxHeight: 200, crop: CENTER)
         }
       }
     }
@@ -128,6 +131,7 @@ query ShopifyProducts {
           id
           altText
           src: transformedSrc (maxWidth: 400, maxHeight: 300, crop: CENTER)
+          placeholder: transformedSrc(maxWidth: 100, maxHeight: 75, crop: CENTER)
         }
       }
     }

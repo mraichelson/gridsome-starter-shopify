@@ -6,6 +6,7 @@ import DefaultLayout from '~/layouts/Default.vue'
 
 // Plugins
 import Notifications from 'vue-notification/dist/ssr.js'
+import { VLazyImagePlugin } from 'v-lazy-image'
 import VueApollo from 'vue-apollo'
 import createStore from './store'
 
@@ -23,8 +24,9 @@ export default function (Vue, { appOptions, isClient, router }) {
   Vue.component('Layout', DefaultLayout)
 
   // Import global plugins
-  Vue.use(VueApollo)
   Vue.use(Notifications)
+  Vue.use(VLazyImagePlugin)
+  Vue.use(VueApollo)
 
   // Create Apollo client
   const apolloClient = new ApolloClient({
