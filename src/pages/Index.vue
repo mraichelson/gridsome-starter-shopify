@@ -24,7 +24,7 @@
             <figure class="image">
               <img
                 :src="collection.image.src"
-                :alt="collection.image.altText">
+                :alt="collection.image.altText || collection.title">
             </figure>
           </div>
         </div>
