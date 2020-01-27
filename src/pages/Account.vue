@@ -29,6 +29,7 @@ import gql from 'graphql-tag'
 // Components
 import AccountOrders from '@/components/Account/AccountOrders'
 import AccountDetails from '@/components/Account/AccountDetails'
+
 export default {
   name: 'Account',
   components: { AccountOrders, AccountDetails },

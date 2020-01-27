@@ -57,6 +57,7 @@
 </template>
 
 <script>
+// Packages
 import gql from 'graphql-tag'
 
 export default {
