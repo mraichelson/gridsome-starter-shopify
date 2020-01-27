@@ -29,6 +29,9 @@
 </template>
 
 <script>
+// Packages
+import gql from 'graphql-tag'
+
 export default {
   props: {
     isLoading: {
@@ -37,6 +40,23 @@ export default {
     }
   },
   data: () => ({ email: '' }),
+  async mounted () {
+    const shouldSkip = !this.$store.getters.isAuthenticated
+    const accessToken = this.$store.getters.accessToken
+    const { data } = await this.$apollo.query({
+      query: gql`query CustomerDetails ($accessToken: String!) {
+        customer (customerAccessToken: $accessToken) {
+          id
+          email
+        }
+      }`,
+      skip: shouldSkip,
+      variables: { accessToken }
+    })
+    if (data && data.customer) {
+      this.email = data.customer.email
+    }
+  },
   methods: {
     checkout () {
       this.$emit('checkout', this.email)
