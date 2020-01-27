@@ -15,6 +15,7 @@
 
       <a
         role="button"
+        aria-label="Open Navbar"
         class="navbar-burger burger">
         <span aria-hidden="true" />
         <span aria-hidden="true" />
