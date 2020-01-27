@@ -6,11 +6,12 @@
     <div class="navbar-brand">
       <g-link
         to="/"
-        class="navbar-item"
-        href="https://gridsome.org/">
-        <img
+        class="navbar-item">
+        <g-image
           src="../favicon.png"
-          alt="Gridsome Logo">
+          width="28"
+          height="28"
+          alt="Gridsome Logo" />
       </g-link>
 
       <a
