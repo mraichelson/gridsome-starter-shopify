@@ -45,8 +45,7 @@ export default {
   components: { CartItemsTable, CartCheckoutForm },
   data: () => ({ isLoading: false }),
   computed: {
-    cart () { return this.$store.state.cart },
-    cartTotal () { return this.$store.getters.cartTotal.format() }
+    cart () { return this.$store.state.cart }
   },
   methods: {
     async checkout (email) {

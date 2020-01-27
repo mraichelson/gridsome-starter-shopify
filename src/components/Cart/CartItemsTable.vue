@@ -97,6 +97,9 @@ export default {
       default: () => []
     }
   },
+  computed: {
+    cartTotal () { return this.$store.getters.cartTotal.format() }
+  },
   methods: {
     async removeItem (itemId) {
       await this.$store.dispatch('removeFromCart', itemId)
