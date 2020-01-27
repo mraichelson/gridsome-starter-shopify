@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@gridsome/plugin-critical": "^0.1.6",
+    "@gridsome/plugin-google-analytics": "^0.1.0",
     "@gridsome/plugin-sitemap": "^0.2.3",
     "apollo-boost": "^0.4.7",
     "bulma": "^0.8.0",

@@ -75,6 +75,12 @@ module.exports = {
       }
     },
     {
+      use: '@gridsome/plugin-google-analytics',
+      options: {
+        id: process.env.GRIDSOME_ANALYTICS_ID
+      }
+    },
+    {
       use: 'gridsome-plugin-manifest',
       options: {
         background_color: '#000000',
