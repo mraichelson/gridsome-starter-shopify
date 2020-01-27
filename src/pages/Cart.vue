@@ -14,7 +14,6 @@
       <br>
       <cart-checkout-form
         v-if="cart.length"
-        :email="email"
         :is-loading="isLoading"
         @checkout="checkout" />
       <div
