@@ -6,6 +6,7 @@ module.exports = {
         some: [ 'nesting', 'id' ]
       },
       allowChildren: false
-    }]
+    }],
+    'vue/no-v-html': 0
   }
 }
