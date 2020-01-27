@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div class="container has-text-centered">
-      <h3 class="title">
+      <h3 class="title is-family-secondary">
         Login
       </h3>
       <div class="columns is-centered">

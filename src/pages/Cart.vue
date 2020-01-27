@@ -3,7 +3,7 @@
     <div class="hero">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <h3 class="title">
+          <h3 class="title is-family-secondary">
             Cart
           </h3>
         </div>

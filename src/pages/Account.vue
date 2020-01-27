@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div class="container">
-      <h3 class="title">
+      <h3 class="title is-family-secondary">
         Your Account
       </h3>
       <div v-if="customer">
