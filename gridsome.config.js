@@ -88,7 +88,7 @@ module.exports = {
     {
       use: 'gridsome-plugin-service-worker',
       options: {
-        precachedRoutes: ['/', '/collection', '/login'],
+        precachedRoutes: ['/', '/collections', '/login'],
         cacheFirst: {
           cacheName: 'images',
           routes: [/\.(?:png|gif|jpg|jpeg|webp|svg)$/]
