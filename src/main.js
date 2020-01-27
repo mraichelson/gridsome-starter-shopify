@@ -21,6 +21,7 @@ import 'typeface-prata'
 export default function (Vue, { appOptions, isClient, router }) {
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
+
   // Import global plugins
   Vue.use(VueApollo)
   Vue.use(Notifications)
@@ -42,6 +43,7 @@ export default function (Vue, { appOptions, isClient, router }) {
   // Add provider to vue app
   appOptions.apolloProvider = apolloProvider
 
+  // Add Vuex store
   const store = createStore(Vue, { isClient })
   appOptions.store = store
 
