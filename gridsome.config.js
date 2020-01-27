@@ -43,6 +43,66 @@ module.exports = {
         ],
         searchFields: ['title', 'handle', 'tags']
       }
+    },
+    'gridsome-plugin-purgecss',
+    {
+      use: '@gridsome/plugin-critical',
+      options: {
+        paths: ['/', '/collections', '/collection/*', '/product/*'],
+        width: 1300,
+        height: 900
+      }
+    },
+    {
+      use: '@gridsome/plugin-sitemap',
+      options: {
+        exclude: ['/account'],
+        config: {
+          '/collection/*': {
+            changefreq: 'weekly',
+            priority: 0.5
+          },
+          '/product/*': {
+            changefreq: 'weekly',
+            priority: 0.5
+          },
+          '/collections': {
+            changefreq: 'monthly',
+            priority: 0.7
+          }
+        }
+      }
+    },
+    {
+      use: 'gridsome-plugin-manifest',
+      options: {
+        background_color: '#000000',
+        icon_path: './src/favicon.png',
+        name: 'Gridsome + Shopify 😍',
+        short_name: 'Shopify Starter',
+        theme_color: '#000000',
+        lang: 'en'
+      }
+    },
+    {
+      use: 'gridsome-plugin-service-worker',
+      options: {
+        precachedRoutes: ['/', '/collection', '/login'],
+        cacheFirst: {
+          cacheName: 'images',
+          routes: [/\.(?:png|gif|jpg|jpeg|webp|svg)$/]
+        },
+        staleWhileRevalidate: {
+          cacheName: 'static-resources',
+          routes: [/\.(?:js|css)$/]
+        }
+      }
+    },
+    {
+      use: 'gridsome-plugin-brotli',
+      options: {
+        extensions: ['css', 'html', 'js', 'svg', 'json', 'xml']
+      }
     }
   ]
 }
