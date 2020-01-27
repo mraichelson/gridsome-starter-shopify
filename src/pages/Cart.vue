@@ -15,7 +15,8 @@
       <cart-checkout-form
         v-if="cart.length"
         :email="email"
-        :is-loading="isLoading" />
+        :is-loading="isLoading"
+        @checkout="checkout" />
       <div
         v-else
         class="container has-text-centered">
