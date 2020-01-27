@@ -14,17 +14,21 @@
           alt="Gridsome Logo" />
       </g-link>
 
-      <a
-        role="button"
-        aria-label="Open Navbar"
-        class="navbar-burger burger">
+      <button
+        :aria-label="isMenuActive ? 'Close nav menu' : 'Open nav menu'"
+        class="navbar-burger burger"
+        :class="{'is-active': isMenuActive}"
+        @click="isMenuActive = !isMenuActive"
+        @keyup="isMenuActive = !isMenuActive">
         <span aria-hidden="true" />
         <span aria-hidden="true" />
         <span aria-hidden="true" />
-      </a>
+      </button>
     </div>
 
-    <div class="navbar-menu">
+    <div
+      class="navbar-menu"
+      :class="{'is-active': isMenuActive}">
       <div class="navbar-start">
         <g-link
           to="/"
@@ -117,6 +121,7 @@
 <script>
 export default {
   data: () => ({
+    isMenuActive: false,
     searchTerm: ''
   }),
   computed: {
@@ -142,3 +147,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.navbar-burger {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+</style>
