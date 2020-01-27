@@ -31,18 +31,15 @@
 <script>
 export default {
   props: {
-    email: {
-      type: String,
-      default: ''
-    },
     isLoading: {
       type: Boolean,
       default: false
     }
   },
+  data: () => ({ email: '' }),
   methods: {
     checkout () {
-      this.$emit('checkout')
+      this.$emit('checkout', this.email)
     }
   }
 }

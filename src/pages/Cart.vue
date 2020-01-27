@@ -44,14 +44,13 @@ export default {
     title: 'Your Cart'
   },
   components: { CartItemsTable, CartCheckoutForm },
-  data: () => ({ email: '', isLoading: false }),
+  data: () => ({ isLoading: false }),
   computed: {
     cart () { return this.$store.state.cart },
     cartTotal () { return this.$store.getters.cartTotal.format() }
   },
   methods: {
-    async checkout () {
-      const email = this.email
+    async checkout (email) {
       if (!this.cart.length) return alert('No items in cart')
       const lineItems = this.cart.map(item => ({ quantity: item.qty, variantId: item.variantId }))
 
@@ -72,8 +71,7 @@ export default {
                 message
               }
             }
-          }
-          `,
+          }`,
           variables: { input: checkoutInput }
         })
         if (checkoutCreate.checkoutUserErrors.length) throw new Error(checkoutCreate.checkoutUserErrors[ 0 ].message)
