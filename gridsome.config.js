@@ -1,5 +1,6 @@
 module.exports = {
   siteName: 'Gridsome + Shopify 😍',
+  siteDescription: 'A full-featured Shopify starter kit for Gridsome.',
   siteUrl: 'https://gridsome-shopify-starter.netlify.com',
   templates: {
     ShopifyProduct: [
