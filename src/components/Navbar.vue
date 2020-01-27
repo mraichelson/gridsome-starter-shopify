@@ -57,6 +57,7 @@
               <input
                 id="search"
                 v-model="searchTerm"
+                aria-label="Search"
                 class="input is-small"
                 type="text"
                 placeholder="Search">
