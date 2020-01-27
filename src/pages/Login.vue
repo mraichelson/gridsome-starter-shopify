@@ -20,7 +20,7 @@
                     class="input"
                     type="email"
                     placeholder="Your Email"
-                    value="hello@"
+                    value="jane@does.com"
                     required>
                 </label>
               </div>
