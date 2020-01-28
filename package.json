@@ -17,6 +17,7 @@
     "gridsome": "^0.7.12",
     "gridsome-plugin-brotli": "^0.1.2",
     "gridsome-plugin-flexsearch": "^0.1.11",
+    "gridsome-plugin-guess-js": "^0.1.1",
     "gridsome-plugin-manifest": "^0.3.4",
     "gridsome-plugin-purgecss": "^1.0.12",
     "gridsome-plugin-service-worker": "^0.1.4",
