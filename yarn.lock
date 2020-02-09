@@ -5770,7 +5770,12 @@ graphql-request@^1.8.2:
   dependencies:
     cross-fetch "2.2.2"
 
-graphql-tag@^2.10.1, graphql-tag@^2.4.2:
+graphql-tag@^2.10.3:
+  version "2.10.3"
+  resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.10.3.tgz#ea1baba5eb8fc6339e4c4cf049dabe522b0edf03"
+  integrity sha512-4FOv3ZKfA4WdOKJeHdz6B3F/vxBLSgmBcGeAFPf4n1F64ltJUvOOerNj0rsJxONQGdhUMynQIvd6LzB+1J5oKA==
+
+graphql-tag@^2.4.2:
   version "2.10.1"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.10.1.tgz#10aa41f1cd8fae5373eaf11f1f67260a3cad5e02"
   integrity sha512-jApXqWBzNXQ8jYa/HLkZJaVw9jgwNqZkywa2zfFn16Iv1Zb7ELNHkJaXHR7Quvd5SIGsy6Ny7SUKATgnu05uEg==
@@ -5797,10 +5802,10 @@ gridsome-plugin-brotli@^0.1.2:
     mkdirp "^0.5.1"
     worker-farm "^1.7.0"
 
-gridsome-plugin-flexsearch@^0.1.11:
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/gridsome-plugin-flexsearch/-/gridsome-plugin-flexsearch-0.1.11.tgz#1af718fdf6744d30d64b5935afd9b58c8cc23e7d"
-  integrity sha512-l0Ay2kJ0zkSkjBEnZIt5coeZURdS9p6B6hojoyniAOlmJCzlZMmRgwFmNn4gVEm3KFq5nkPcLvK6XdF29GwKKQ==
+gridsome-plugin-flexsearch@^0.1.12:
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/gridsome-plugin-flexsearch/-/gridsome-plugin-flexsearch-0.1.12.tgz#7cd24310c3d92bb0235bc728c696e227a31c1d2b"
+  integrity sha512-tJSDkNtZZSF216H8kM65qSUWBheWz32awV8HY7vPkmkiptb3ry3tCKFky6ayTO4Q7dkUdwbUh9ciYFMdBYlgUw==
   dependencies:
     core-js "2"
     flexsearch "^0.6.32"
