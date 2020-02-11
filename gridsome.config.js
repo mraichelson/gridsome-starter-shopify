@@ -2,7 +2,6 @@ module.exports = {
   siteName: 'Gridsome + Shopify 😍',
   siteDescription: 'A full-featured Shopify starter kit for Gridsome.',
   siteUrl: 'https://gridsome-shopify-starter.netlify.com',
-  pathPrefix: '/cheese',
   templates: {
     ShopifyProduct: [
       {
@@ -81,16 +80,16 @@ module.exports = {
         id: process.env.GRIDSOME_ANALYTICS_ID
       }
     },
-    {
-      use: 'gridsome-plugin-guess-js',
-      options: {
-        viewId: process.env.GUESS_ANALYTICS_VIEW,
-        jwt: {
-          clientEmail: process.env.GUESS_ANALYTICS_EMAIL,
-          privateKey: process.env.GUESS_ANALYTICS_KEY
-        }
-      }
-    },
+    // {
+    //   use: 'gridsome-plugin-guess-js',
+    //   options: {
+    //     viewId: process.env.GUESS_ANALYTICS_VIEW,
+    //     jwt: {
+    //       clientEmail: process.env.GUESS_ANALYTICS_EMAIL,
+    //       privateKey: process.env.GUESS_ANALYTICS_KEY
+    //     }
+    //   }
+    // },
     {
       use: 'gridsome-plugin-manifest',
       options: {
