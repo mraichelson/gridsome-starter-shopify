@@ -29,7 +29,7 @@ export default function (Vue, { appOptions }) {
   // Create Apollo client
   const apolloClient = new ApolloClient({
     fetch,
-    uri: `https://${process.env.GRIDSOME_SHOPIFY_STOREFRONT}.myshopify.com/api/2019-07/graphql.json`,
+    uri: `https://${process.env.GRIDSOME_SHOPIFY_STOREFRONT}.myshopify.com/api/2020-04/graphql.json`,
     headers: {
       'X-Shopify-Storefront-Access-Token': process.env.GRIDSOME_SHOPIFY_STOREFRONT_TOKEN
     }

@@ -11,8 +11,8 @@
                 Our Core Collection
               </h1>
               <div
-                v-html="collection.descriptionHtml"
-                class="content" />
+                class="content"
+                v-html="collection.descriptionHtml" />
               <g-link
                 :to="`collection/${collection.handle}`"
                 class="button">
@@ -47,9 +47,9 @@
           <div class="card">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img
+                <!-- <img
                   :src="product.images[0].src"
-                  :alt="product.images[0].altText || product.title">
+                :alt="product.images[0].altText || product.title">-->
               </figure>
             </div>
             <div class="card-content has-text-left">
@@ -65,8 +65,8 @@
               </div>
 
               <div
-                v-html="product.descriptionHtml"
-                class="content" />
+                class="content"
+                v-html="product.descriptionHtml" />
               <div class="field is-grouped is-grouped-right">
                 <div class="control">
                   <g-link
@@ -90,8 +90,15 @@ export default {
     title: 'Come, shop!'
   },
   computed: {
-    collection () { return this.$page.allShopifyCollection.edges.length && this.$page.allShopifyCollection.edges[ 0 ].node },
-    featuredProducts () { return this.$page.allShopifyProduct.edges }
+    collection () {
+      return (
+        this.$page.allShopifyCollection.edges.length &&
+        this.$page.allShopifyCollection.edges[ 0 ].node
+      )
+    },
+    featuredProducts () {
+      return this.$page.allShopifyProduct.edges
+    }
   }
 }
 </script>
