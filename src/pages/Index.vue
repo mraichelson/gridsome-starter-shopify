@@ -46,10 +46,12 @@
           class="column is-4">
           <div class="card">
             <div class="card-image">
-              <figure class="image is-4by3">
-                <!-- <img
+              <figure
+                v-if="product.images.length"
+                class="image is-4by3">
+                <img
                   :src="product.images[0].src"
-                :alt="product.images[0].altText || product.title">-->
+                  :alt="product.images[0].altText || product.title">
               </figure>
             </div>
             <div class="card-content has-text-left">
